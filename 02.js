@@ -1,13 +1,12 @@
-function solution(first,second,third){
-    let sum = sumTwo(first,second)
-    let result = substract(sum, third)
-    console.log(result)
-    function sumTwo(a,b){
-        return (a+b);
-    }
-
-    function substract(a, b){
-        return (a - b);
+function solve(firstArr, secondArr){
+    for (let i = 0; i < firstArr.length; i++){
+        for (let j = 0; j < secondArr.length; j++){
+            if (firstArr[i] === secondArr[j]){
+                console.log(secondArr[j])
+            }
+        }
     }
 }
-solution(23,6,10)
+solve (['Hey', 'hello', 2, 4, 'Peter', 'e'],
+['Petar', 10, 'hey', 4, 'hello', '2']
+)
