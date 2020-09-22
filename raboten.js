@@ -1,6 +1,10 @@
-function solve(number){
-
-var digit = parseInt(number, 2);
-console.log(digit);
+function row(x){
+    
+    for (i = 0; i <x; i++){
+        for (b=0; b <=x; b++){
+           console.log(x)
+        }   
+    }
+   
 }
-solve(1101000)
+row (3);
