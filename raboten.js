@@ -1,10 +1,8 @@
-function row(x){
-    
-    for (i = 0; i <x; i++){
-        for (b=0; b <=x; b++){
-           console.log(x)
-        }   
-    }
-   
+function solve() {
+    var date = new Date("July 20, 2016 15:00:00");
+    var nextDate = date.getDate() + 20;
+    date.setDate(nextDate);
+    var newDate = date.toLocaleString();
+console.log(date)
 }
-row (3);
+solve()
