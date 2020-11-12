@@ -1,24 +1,25 @@
-function solve(numbers){
-    let newArray = [];
-    let sumNumbers = 0;
-    let newSum = 0;
-    for (let i = 0; i < numbers.length; i++){
-        if (numbers[i]%2 == 0){
-            newArray[i]=numbers[i]+i
+function solve(input){
+    let moneyNeeded = Number(input.shift());
+    let months = Number(input.shift());
+    let saved = 0;
+
+    for (let i = 1; i<=months;i++){
+        if (i%2!==0 && i !==1){
+            saved*=0.84
         }
-        else {
-            newArray[i]=numbers[i]-i
+        if(i%4==0){
+            saved*=1.25
         }
-        sumNumbers+=numbers[i]
-        newSum+=newArray[i]
-        
+        saved+= (moneyNeeded*0.25)
+    }
+    if (saved>=moneyNeeded){
+        console.log(`Bravo! You can go to Disneyland and you will have ${(saved-moneyNeeded).toFixed(2)}lv. for souvenirs.`);
+    }
+    else {
+        console.log(`Sorry. You need ${(moneyNeeded-saved).toFixed(2)}lv. more.`);
         
     }
-    console.log(newArray)
-    console.log(sumNumbers)
-    console.log(newSum)
+    
 }
-
-
-// console.log(numbers[i])
-solve([5, 15, 23, 56, 35])
+solve(["1000",
+"4"])
