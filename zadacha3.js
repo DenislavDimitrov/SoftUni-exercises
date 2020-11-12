@@ -1,0 +1,36 @@
+function solve(input) {
+    let students = new Map();
+    for (const line of input) {
+        let lineArr = line.split(' ')
+        let name = lineArr.shift();
+        let grades = lineArr.map(x => Number(x))
+        if (students.has(name)) {
+        let oldGrades = students.get(name);
+        students.set(name, oldGrades.concat(grades))
+        } else {
+            students.set(name, grades);
+        }
+    }
+    let studentEntries = Array.from(students.entries());
+    let sortedStudents = studentEntries.sort((a,b)=>{
+        let averageGradeA = getAverageGrade(a[1])
+        let averageGradeB = getAverageGrade(b[1])
+        return averageGradeA - averageGradeB
+    })
+    function getAverageGrade(grades){
+        let gradesSum =0;
+        for (const grade of grades){
+            gradesSum+=grade
+        }
+        return gradesSum/grades.length;
+    }
+    for (const kvp of sortedStudents) {
+        console.log(`${kvp[0]}: ${kvp[1].join(', ')}`)
+    }
+}
+
+solve(['Lilly 4 6 6 5',
+    'Tim 5 6',
+    'Tammy 2 4 3',
+    'Tim 6 6']
+)
