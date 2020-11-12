@@ -4,5 +4,8 @@ let pattern = /(?<firstLetter>[A-Z])[a-z]+/g;
 
 
 
-let result = text.replace(pattern, 'Morem')
-console.log(result)
+let matches = text.matchAll(pattern)
+for (const match of matches){
+    console.log(match)
+}
+
