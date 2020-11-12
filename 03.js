@@ -1,42 +1,53 @@
-function solution(firstChar, lastChar){
-    let first = getNumberValue(firstChar);
-    let last = getNumberValue(lastChar);
+function solve(input) {
+    let bookShelf = input.shift().split('&')
 
-    let min = Math.min(first, last);
-    let max = Math.max(first, last)
+    for (let element of input) {
+        let [command, book, bookSwap] = element.split(' | ')
 
-    let allSymbols = getCharsInRange(min, max)
-
-    console.log(joinSymbols(allSymbols, " "))
-
-    function getNumberValue(char){
-        return char.charCodeAt(0);
-    }
-    function getCharValue(number){
-        return String.fromCharCode(number);
-    }
-    function getCharsInRange(start,end){
-        let characters = [];
-
-        for (let i = (start+1); i < end; i++){
-            let symbol = getCharValue(i);
-            characters.push(symbol)
-        }
-
-        return characters;
-
-    }
-    function joinSymbols(arr, separator){
-        let result = '';
-        for(let index in arr){
-            let character = arr[index];
-            if (index < (arr.length - 1)){
-            result += `${character}${separator}`
-            } else {
-                result+=character;
+        if (command == 'Add Book') {
+            if (!bookShelf.includes(book)) {
+                bookShelf.unshift(book)
             }
         }
-        return result
+        else if (command == 'Take Book') {
+            if (bookShelf.includes(book)) {
+                bookShelf.splice(bookShelf.indexOf(book), 1)
+            }
+        }
+        else if (command == 'Insert Book') {
+            bookShelf.push(book)
+        }
+        else if (command == 'Check Book') {
+            book = Number(book)
+            if (book >= 0 && book < bookShelf.length) {
+                console.log(bookShelf[book]);
+            }
+        }
+        else if (command == 'Swap Books') {
+            if (bookShelf.includes(book) && bookShelf.includes(bookSwap)){
+                let a = bookShelf.indexOf(book)
+                let b = bookShelf.indexOf(bookSwap)
+                bookShelf[a] = bookSwap;
+                bookShelf[b] = book;
+            }
+        }
+        else if (command == 'Done') {
+            console.log(bookShelf.join(', '));
+            
+        }
     }
+
+
+
+
 }
-solution('Z', 'A');
+solve([
+    "Anna Karenina&Heart of Darkness&Catch-22& The Stranger",
+    "Add Book | David Copperfield",
+    "Add Book | One Thousand and One Nights",
+    "Swap Books | One Thousand and One Nights | Catch-22",
+    "Take Book | David Copperfield",
+    "Insert Book | The Stories of Anton Chekhov",
+    "Check Book | 17",
+    "Done"
+])
